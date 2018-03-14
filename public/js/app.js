@@ -102,7 +102,7 @@ export default class TagBrowserWidget {
 
   getTagListItemTemplate(tagName) {
     return `
-      <li><a href="#" data-tag-name='${tagName}'><span class='tag is-link'>${tagName}</span></a></li>
+      <li><a href="#" class="tag-list-item" data-tag-name='${tagName}'><span class='tag is-link'>${tagName}</span></a></li>
     `
   }
 
@@ -119,10 +119,8 @@ export default class TagBrowserWidget {
   }
 
   render() {
-    let seriesTagListNames = this.getSeriesTagList();
-    for (var tagName of seriesTagListNames) {
-      $(this.tagList).append(this.getTagListItemTemplate(tagName));
-    };
+    this.updateSeriesTagListNames();
+    this.updateSelectedSeriesContent(this.getDefaultSeriesTemplate());
   }
 
   clearTagListItemState(listItems) {
@@ -150,6 +148,13 @@ export default class TagBrowserWidget {
     for (let matchingSeries of matchingItemsSeriesList) {
       $(this.matchingItemsList).append(this.getMatchingItemListTemplate(matchingSeries));
     }
+  }
+
+  updateSeriesTagListNames() {
+    let seriesTagListNames = this.getSeriesTagList();
+    for (var tagName of seriesTagListNames) {
+      $(this.tagList).append(this.getTagListItemTemplate(tagName));
+    };
   }
 
   emptyMatchingItemsList() {
