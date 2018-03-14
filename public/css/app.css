@@ -35,3 +35,8 @@
   color: #fff;
 }
 
+.tag-list-item:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
